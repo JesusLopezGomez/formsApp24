@@ -25,10 +25,10 @@
 
         <div class="input-group">
             <input class="form-control"
-                   placeholder="Agregar favorito">
+                   placeholder="Agregar favorito" name="name" #name>
 
             <button class="btn btn-outline-primary"
-                    type="button">
+                    type="button" (click)="add(name.value)">
                 Agregar
             </button>
         </div>

@@ -19,6 +19,10 @@ export class DinamicosComponent {
     this.person.favourites = this.person.favourites.filter((favourite)=> favourite.id !== id)
   }
 
+  add(name:string){
+    const id = this.person.favourites[this.person.favourites.length-1].id+1
+    this.person.favourites.push({id:id,name:name});
+  }
 
   submit(){
 
