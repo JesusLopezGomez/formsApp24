@@ -22,8 +22,8 @@
                 <label class="col-sm-3 col-form-label">Email</label>
                 <div class="col-sm-9">
                     <input type="e,ao;" class="form-control" placeholder="Email del usuario" formControlName="email">
-                    <span class="form-text text-danger" *ngIf="isValid('email')">
-                        Debe ser en formato de email
+                    <span class="form-text text-danger">
+                       {{emailErrosMsg}}
                     </span>
                 </div>
             </div>

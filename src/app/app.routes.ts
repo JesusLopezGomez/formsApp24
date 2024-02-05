@@ -17,6 +17,10 @@ export const routes: Routes = [
         loadChildren: () => import("./auth/routes").then(mod => mod.routerA)
       },
       {
+        path:'countries',
+        loadComponent: () => import("./countries/countries.component").then(mod => mod.CountriesComponent)
+      },
+      {
         path: '',
         redirectTo: 'template/basicos',
         pathMatch: 'full'

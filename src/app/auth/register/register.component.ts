@@ -5,7 +5,7 @@ import { ValidatorsService } from '../../shared/validators/validators.service';
 import { ValidateEmailService } from '../../shared/validators/validate-email.service';
 import { HttpClient } from '@angular/common/http';
 import { ValidateUsernameService } from '../../shared/validators/validate-username.service';
-import { UserService } from '../../service/user.service';
+import { UserService } from '../../shared/service/user.service';
 
 interface Usuario{
   nombre:string,
@@ -33,7 +33,7 @@ export class RegisterComponent implements OnInit{
 
   myForm: FormGroup = this.fb.group({
     nombre: ["",[Validators.required,Validators.pattern(this.serviceValidator.nameSurnamePatter)]],
-    email: ["", [Validators.required,Validators.email,Validators.pattern(this.serviceValidator.emailPattern)],[this.emailValidator]],
+    email: ["", [Validators.required,Validators.pattern(this.serviceValidator.emailPattern)],[this.emailValidator]],
     username: ["",[Validators.required,this.serviceValidator.forbiddenNameValidator("jesus")],[this.usernameValidator]],
     password: ["",Validators.required],
     passwordConfirm: ["",Validators.required]
@@ -44,6 +44,22 @@ export class RegisterComponent implements OnInit{
     email:"",
     username:"",
     password:""
+  }
+
+  get emailErrosMsg():string{
+    const errors = this.myForm.get("email")?.errors;
+    let errorMsg = "";
+    if(this.myForm.get("email")?.touched && errors){
+      if(errors['required']){
+        errorMsg = "El email es obligatorio";
+      }else if(errors['pattern']){
+        errorMsg = "El email no tiene formato correcto";
+      }else if(errors['emailTaken']){
+        errorMsg = "El email ya existe en base de datos";
+      }
+    }
+
+    return errorMsg;
   }
 
   submit(){

@@ -29,13 +29,20 @@ export class ValidatorsService {
   equalsFields(field1:string,field2:string) : ValidatorFn{
 
     return (formCotrol: AbstractControl) : ValidationErrors | null => {
+      
+      const control2 = formCotrol.get(field2);
       const field1Input : string = formCotrol.get(field1)?.value;
       const field2Input : string = formCotrol.get(field2)?.value;
+      
       if(field1Input !== field2Input){
-        formCotrol.get(field2)?.setErrors({nonEquals:true})
+        control2?.setErrors({nonEquals:true})
         return {notEqualsFields:true}
       }
-      formCotrol.get(field2)?.setErrors(null)
+      if(control2?.errors && control2.hasError("nonEquals")){
+        delete control2.errors["nonEquals"];
+        control2.updateValueAndValidity();
+      }
+
       return null;
     }
   }

@@ -62,4 +62,10 @@ export class SideMenuComponent {
     },
   ];
 
+  countriesMenu: MenuItem[] = [
+    {
+      texto:'Paises',
+      ruta: './countries'
+    }
+  ]
 }
