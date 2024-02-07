@@ -13,3 +13,7 @@ export interface NativeName {
     official: string;
     common:   string;
 }
+
+export interface Border{
+    borders: string[];
+}
