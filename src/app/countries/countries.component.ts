@@ -1,5 +1,5 @@
 import { JsonPipe, LowerCasePipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CountriesService } from '../shared/service/countries.service';
 import { SmallContry } from '../shared/interfaces/countries';
@@ -53,9 +53,9 @@ export class CountriesComponent implements OnInit{
     this.myForm.get('country')?.valueChanges
     .subscribe(
       (country) => {
-      this.countriesService.getBordersByRegion(country).subscribe({
+      this.countriesService.getBordersByCountry(country).subscribe({
         next: (borders) => {
-          this.borders = borders;
+          this.borders = borders.borders;
         }
       })
     })

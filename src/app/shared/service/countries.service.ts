@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { SmallContry } from '../interfaces/countries';
+import { Border, SmallContry } from '../interfaces/countries';
 
 @Injectable({
   providedIn: 'root'
@@ -20,11 +20,11 @@ export class CountriesService {
     return this.http.get<SmallContry[]>(`${this.baseUrl}/region/${region}?fields=name,ccn3`);
   }
 
-  getBordersByRegion(cod:string) : Observable<string[]>{
+  getBordersByCountry(cod:string) : Observable<Border>{
     if(cod){
-      return this.http.get<string[]>(`${this.baseUrl}/alpha/${cod}?fields=borders`);
+      return this.http.get<Border>(`${this.baseUrl}/alpha/${cod}?fields=borders`);
     }else{
-      return of([]);
+      return of();
     }
   }
 }
