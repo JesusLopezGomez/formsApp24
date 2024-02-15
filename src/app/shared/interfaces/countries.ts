@@ -14,6 +14,6 @@ export interface NativeName {
     common:   string;
 }
 
-export interface Border {
-    borders:string[]
+export interface Border{
+    borders: string[];
 }

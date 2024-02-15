@@ -47,3 +47,19 @@
         {{ item.texto }}
     </li>
 </ul>
+
+<ul class="list-group">
+    <li *ngFor="let item of userMenu"
+        class="list-group-item"
+        [routerLink]="[ item.ruta ]"
+        routerLinkActive="active">
+        {{ item.texto }}
+    </li>
+</ul>
+
+<br>
+<ul class="list-group">
+    <li class="list-group-item bg-danger text-white" (click)="logout()">
+        Logout
+    </li>
+</ul>

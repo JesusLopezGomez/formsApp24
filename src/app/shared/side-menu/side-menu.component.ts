@@ -1,6 +1,7 @@
 import { NgFor } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { AuthService } from '../../auth/services/auth.service';
 
 interface MenuItem {
   texto: string;
@@ -21,6 +22,9 @@ interface MenuItem {
   ]
 })
 export class SideMenuComponent {
+
+  constructor(private authService: AuthService){}
+
   templateMenu: MenuItem[] = [
     {
       texto: 'Básicos',
@@ -68,4 +72,15 @@ export class SideMenuComponent {
       ruta: './countries'
     }
   ]
+
+  userMenu: MenuItem[] = [
+    {
+      texto:'Listado de usuarios',
+      ruta: './users/list'
+    }
+  ]
+
+  logout(){
+    this.authService.logout();
+  }
 }
